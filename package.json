@@ -24,7 +24,7 @@
     "date-fns": "^2.30.0",
     "framer-motion": "^10.16.4",
     "lucide-react": "^0.285.0",
-    "next": "^13.5.6",
+    "next": "^14.0.2",
     "next-contentlayer": "^0.3.4",
     "next-themes": "^0.2.1",
     "postcss": "^8.4.31",
@@ -39,10 +39,10 @@
     "tailwindcss-animate": "^1.0.7"
   },
   "devDependencies": {
+    "@tailwindcss/typography": "^0.5.10",
     "@types/node": "^20",
     "@types/react": "^18",
     "@types/react-dom": "^18",
-    "@tailwindcss/typography": "^0.5.10",
     "autoprefixer": "^10.0.1",
     "eslint": "^8",
     "eslint-config-next": "14.0.1",
