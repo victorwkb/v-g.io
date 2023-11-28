@@ -10,11 +10,13 @@ export default function ThemeSwitcher() {
   const [mounted, setMounted] = useState(false);
   const { theme, setTheme, resolvedTheme, themes } = useTheme();
 
-  useEffect(() => { setMounted(true) }, []);
+  useEffect(() => {
+    setMounted(true);
+  }, []);
 
   if (!mounted) {
     return null;
-  };
+  }
 
   return (
     <>
@@ -22,7 +24,7 @@ export default function ThemeSwitcher() {
         {({ open }) => {
           const iconClassName = clsx(
             "w-5 h-5 text-secondary hover:text-primary cursor-pointer transition-colors",
-            open ? "text-primary" : "text-secondary"
+            open ? "text-primary" : "text-secondary",
           );
           return (
             <div className="relative">
@@ -54,7 +56,7 @@ export default function ThemeSwitcher() {
                         className={({ active }) =>
                           clsx(
                             "relative cursor-default select-none rounded-md py-2 pl-10 pr-4",
-                            active ? "bg-tertiary" : ""
+                            active ? "bg-tertiary" : "",
                           )
                         }
                         value={theme}
