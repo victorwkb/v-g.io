@@ -37,3 +37,38 @@
     background-color: var(--bg);
   }
 }
+
+@keyframes pulse {
+  0% {
+    box-shadow:
+      0px 0px 52px #6166dc,
+      0px 0px 20px #d2a8ff,
+      inset 0px 1px 3px rgba(255, 255, 255, 0.22);
+  }
+  70% {
+    box-shadow:
+      0px 0px 70px #6166dc,
+      0px 0px 40px #d2a8ff,
+      inset 0px 1px 3px rgba(255, 255, 255, 0.22);
+  }
+  100% {
+    box-shadow:
+      0px 0px 52px #6166dc,
+      0px 0px 20px #d2a8ff,
+      inset 0px 1px 3px rgba(255, 255, 255, 0.22);
+  }
+}
+
+@media (hover: hover) {
+  .animated-list:hover li {
+    opacity: 0.5;
+  }
+
+  .animated-list:hover li:hover {
+    opacity: 1;
+  }
+}
+
+.animate-in {
+  animation-delay: calc(var(--index) * 130ms);
+}

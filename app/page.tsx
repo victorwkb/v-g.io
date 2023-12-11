@@ -7,7 +7,7 @@ import { ArrowUpRightIcon } from "@heroicons/react/20/solid";
 export default async function Home() {
   return (
     <div className="flex flex-col gap-16 md:gap-24">
-      <div className="flex animate-in flex-col gap-8">
+      <div className="animate-in flex flex-col gap-8">
         <div>
           <h1 className="animate-in text-3xl font-bold text-primary">
             Victor Goh
@@ -21,7 +21,7 @@ export default async function Home() {
         </div>
 
         <div
-          className="flex animate-in flex-col gap-6 text-secondary md:flex-row md:items-center"
+          className="animate-in flex flex-col gap-6 text-secondary md:flex-row md:items-center"
           style={{ "--index": 1 } as React.CSSProperties}
         >
           <Image
@@ -34,16 +34,17 @@ export default async function Home() {
         </div>
 
         <p
-          className="max-w-lg animate-in text-primary"
+          className="animate-in max-w-lg text-primary"
           style={{ "--index": 2 } as React.CSSProperties}
         >
-          Hi, I&apos;m Victor. I&apos;m a data enthusiast who is passionate about building
-          data-driven solutions. In addition to being a data nerd, I&apos;m also starting on
-          writing blogs about my journey in data science.
+          Hi, I&apos;m Victor. I&apos;m a data enthusiast who is passionate
+          about building data-driven solutions. In addition to being a data
+          nerd, I&apos;m also starting on writing blogs about my journey in data
+          science.
         </p>
 
         <ul
-          className="animated-list flex animate-in flex-col gap-2 text-secondary md:flex-row md:gap-6"
+          className="animated-list animate-in flex flex-col gap-2 text-secondary md:flex-row md:gap-6"
           style={{ "--index": 2 } as React.CSSProperties}
         >
           <li className="transition-opacity">
@@ -67,7 +68,7 @@ export default async function Home() {
         </ul>
 
         <div
-          className="flex animate-in flex-col gap-8"
+          className="animate-in flex flex-col gap-8"
           style={{ "--index": 3 } as React.CSSProperties}
         >
           <h2 className="text-secondary">Latest Posts</h2>
