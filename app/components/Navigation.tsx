@@ -12,8 +12,8 @@ import { Fragment } from "react";
 
 const navItems = [
   { label: "About", href: "/about" },
-  { label: "Blog", href: "/blog" },
   { label: "Projects", href: "/projects" },
+  { label: "Blog", href: "/blog" },
 ];
 
 export default function Navigation() {
