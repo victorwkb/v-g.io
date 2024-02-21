@@ -3,10 +3,11 @@ import Image from "next/image";
 import Link from "next/link";
 import clsx from "clsx";
 import { allProjects } from ".contentlayer/generated";
+import Halo from "app/components/ui/Halo";
 
 export const metadata: Metadata = {
   title: "Projects | Victor Goh",
-  description: "Check out the projects I've worked on.",
+  description: "This is the collection of projects I've worked on during my free time.",
 };
 
 export default function Blog() {
@@ -41,13 +42,15 @@ export default function Blog() {
               href={`/projects/${project.slug}`}
               className="w-full md:w-2/5 aspect-video bg-tertiary rounded-lg border border-secondary overflow-clip select-none"
             >
-              <Image
-                src={project.image}
-                alt={project.title}
-                layout="fill"
-                objectFit="cover"
-                className="w-full h-full"
-              />
+              <Halo>
+                <Image
+                  src={project.image}
+                  alt={project.title}
+                  layout="fill"
+                  objectFit="cover"
+                  className="w-full h-full"
+                />
+              </Halo>
             </Link>
             <div className="w-full md:w-3/5 space-y-2">
               <div>

@@ -16,7 +16,7 @@ export default async function Home() {
             className="animate-in text-secondary"
             style={{ "--index": 1 } as React.CSSProperties}
           >
-            I&apos;m an aspiring data scientist.
+            I&apos;m a data scientist and engineer.
           </p>
         </div>
 
@@ -37,10 +37,9 @@ export default async function Home() {
           className="animate-in max-w-lg text-primary"
           style={{ "--index": 2 } as React.CSSProperties}
         >
-          Hi, I&apos;m Victor. I&apos;m a data enthusiast who is passionate
-          about building data-driven solutions. In addition to being a data
-          nerd, I&apos;m also starting on writing blogs about my journey in data
-          science.
+          Hi there, I&apos;m Victor. My experties revolves around building data-driven solutions. 
+          In addition to being a data nerd, I&apos;m also starting on writing blogs about my 
+          journey in data science.
         </p>
 
         <ul

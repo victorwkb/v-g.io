@@ -1,6 +1,7 @@
 "use client";
 
 import clsx from "clsx";
+import Image from "next/image";
 import Link from "next/link";
 import ThemeSwitcher from "./ThemeSwitcher";
 import { usePathname } from "next/navigation";
@@ -24,7 +25,13 @@ export default function Navigation() {
     <header className={clsx("bg-primary relative top-0 z-20 md:sticky")}>
       <nav className="lg mx-auto flex max-w-[700px] items-center justify-between gap-3 px-4 py-3 md:px-6">
         <Link href="/" className="text-primary shrink-0">
-          <RocketLaunchIcon className="h-5 w-5" />
+          <Image
+            alt="favicon"
+            src="/gallery/favicon-inversed.png"
+            height={36}
+            width={36}
+            layout="fixed"
+          />
         </Link>
 
         <ul className="hidden items-center gap-1 md:flex">

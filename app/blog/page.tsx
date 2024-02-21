@@ -2,8 +2,8 @@ import Image from "next/image";
 import { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Blog",
-  description: "Blog page",
+  title: "Blog | Victor Goh",
+  description: "I write about coding, hackathons and more ...",
 };
 
 export default function About() {
