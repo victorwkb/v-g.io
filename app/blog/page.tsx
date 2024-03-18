@@ -17,7 +17,14 @@ export default function About() {
         >
           Posts about coding, hackathons and more ...
         </p>
+
       </div>
+      <p
+        className="animate-in text-secondary"
+        style={{ "--index": 2 } as React.CSSProperties}
+      >
+        Coming soon...
+      </p>
     </div>
   );
 }
