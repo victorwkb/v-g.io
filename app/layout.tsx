@@ -10,8 +10,17 @@ import Navigation from "./components/Navigation";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "Home | Victor Goh",
-  description: "I am a data enthusiast",
+  metadataBase: new URL("https://v-g-io.vercel.app"),
+  title: "Victor Goh",
+  description:
+    "Melbourne-based data scientist and engineer, sharing insights on data driven solutions.",
+  openGraph: {
+    title: "Victor Goh",
+    url: "https://v-g-io.vercel.app",
+    images: [
+      { url: "https://v-g-io.vercel.app/gallery/favicon.png", alt: "v-g.io" },
+    ],
+  },
 };
 
 export default function RootLayout({
@@ -20,19 +29,15 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en" suppressHydrationWarning={true}>
+    <html lang="en">
       <body
         className={clsx(
           inter.className,
-          "antialiased width-full bg-primary text-primary"
+          "width-full bg-primary text-primary antialiased",
         )}
       >
         <main>
-          <Providers
-            attribute="class"
-            defaultTheme="system"
-            enableSystem
-          >
+          <Providers attribute="class" defaultTheme="system" enableSystem>
             <Navigation />
             <div
               className={
