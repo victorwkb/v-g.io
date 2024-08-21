@@ -3,7 +3,7 @@ import Image from "next/image";
 import Link from "next/link";
 import clsx from "clsx";
 import { allProjects } from ".contentlayer/generated";
-import Halo from "app/components/ui/Halo";
+import Halo from "app/components/Halo";
 
 export const metadata: Metadata = {
   title: "Projects | Victor Goh",
@@ -46,9 +46,8 @@ export default function Blog() {
                 <Image
                   src={project.image}
                   alt={project.title}
-                  layout="fill"
-                  objectFit="cover"
-                  className="w-full h-full"
+                  fill
+                  className="w-full h-full object-cover"
                 />
               </Halo>
             </Link>

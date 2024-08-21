@@ -1,5 +1,5 @@
 import Image from "next/image";
-import Link from "./../components/ui/Link";
+import Link from "./../components/Link";
 import ConnectLinks from "./../components/ConnectLinks";
 import dp from "public/gallery/dp.jpg";
 

@@ -1,8 +1,8 @@
 import { Metadata } from "next";
 import ConnectLinks from "app/components/ConnectLinks";
 import Image from "next/image";
-import Link from "app/components/ui/Link";
-import Section from "app/components/ui/Section";
+import Link from "app/components/Link";
+import Section from "app/components/Section";
 import Workplaces from "app/about/components/Workplaces";
 import wehi from "public/gallery/wehi.jpg";
 

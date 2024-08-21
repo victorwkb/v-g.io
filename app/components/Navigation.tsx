@@ -6,15 +6,15 @@ import Link from "next/link";
 import ThemeSwitcher from "./ThemeSwitcher";
 import { usePathname } from "next/navigation";
 import { useTheme } from "next-themes";
-import NavLink from "./ui/NavLink";
+import NavLink from "./NavLink";
 import { Popover, Transition } from "@headlessui/react";
 import { RocketLaunchIcon, ChevronDownIcon } from "@heroicons/react/20/solid";
 import { Fragment } from "react";
 
 const navItems = [
   { label: "About", href: "/about" },
-  { label: "Projects", href: "/projects" },
   { label: "Blog", href: "/blog" },
+  { label: "Projects", href: "/projects" },
 ];
 
 export default function Navigation() {
@@ -22,16 +22,24 @@ export default function Navigation() {
   const { theme } = useTheme();
 
   return (
-    <header className={clsx("bg-primary relative top-0 z-20 md:sticky")}>
+    <header className={clsx("relative top-0 z-20 bg-primary md:sticky")}>
       <nav className="lg mx-auto flex max-w-[700px] items-center justify-between gap-3 px-4 py-3 md:px-6">
-        <Link href="/" className="text-primary shrink-0">
-          <Image
-            alt="favicon"
-            src="/gallery/favicon-inversed.png"
-            height={36}
-            width={36}
-            layout="fixed"
-          />
+        <Link href="/" className="shrink-0 text-primary">
+          {theme === "dark" ? (
+            <Image
+              alt="favicon"
+              src="/gallery/favicon.png"
+              height={36}
+              width={36}
+            />
+          ) : (
+            <Image
+              alt="favicon"
+              src="/gallery/favicon-inversed.png"
+              height={36}
+              width={36}
+            />
+          )}
         </Link>
 
         <ul className="hidden items-center gap-1 md:flex">
@@ -45,7 +53,7 @@ export default function Navigation() {
         <Popover className="relative ml-auto md:hidden">
           {({ open }) => (
             <>
-              <Popover.Button className="text-secondary flex items-center gap-1 rounded-lg p-1 focus:ring-0 focus-visible:outline-none">
+              <Popover.Button className="flex items-center gap-1 rounded-lg p-1 text-secondary focus:ring-0 focus-visible:outline-none">
                 <ChevronDownIcon
                   className={clsx(
                     "h-5 w-5",
@@ -69,7 +77,7 @@ export default function Navigation() {
                         key={navItems.href}
                         href={navItems.href}
                         className={clsx(
-                          "hover:text-primary rounded-lg px-4 py-2 text-sm transition-colors",
+                          "rounded-lg px-4 py-2 text-sm transition-colors hover:text-primary",
                           pathname === navItems.href
                             ? "bg-secondaryA text-primary"
                             : "text-secondary",
