@@ -2,6 +2,7 @@ import { allProjects } from ".contentlayer/generated";
 import Image from "next/image";
 import { notFound } from "next/navigation";
 import Link from "next/link";
+import MdxWrapper from "app/components/MdxWrapper";
 
 export default function Project({ params }: { params: any }) {
   const proj = allProjects.find((proj) => proj.slug === params.slug);
@@ -32,11 +33,13 @@ export default function Project({ params }: { params: any }) {
             className="animate-in text-lg leading-tight text-secondary md:text-xl"
             style={{ "--index": 1 } as React.CSSProperties}
           >
-            {proj.description}
+            {proj.summary}
           </p>
         </div>
-
-        <div className="h-12" />
+        <div className="h-16" />
+        <div className="project prose prose-neutral">
+          <MdxWrapper code={proj.body.code} />
+        </div>
       </article>
       <div className="flex flex-col gap-20">
         <div className="flex flex-col gap-6">

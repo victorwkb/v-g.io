@@ -15,7 +15,7 @@ const blogComputedFields: ComputedFields = {
   },
   image: {
     type: "string",
-    resolve: (doc) => `/blog/${getSlug(doc)}/image.jpg`,
+    resolve: (doc) => `/blog/${getSlug(doc)}/image.png`,
   },
 };
 
@@ -40,7 +40,7 @@ const projectComputedFields: ComputedFields = {
   },
   image: {
     type: "string",
-    resolve: (doc) => `/projects/${getSlug(doc)}/image.jpg`,
+    resolve: (doc) => `/projects/${getSlug(doc)}/image.png`,
   },
 };
 
@@ -51,7 +51,7 @@ export const Project = defineDocumentType(() => ({
   fields: {
     title: { type: "string", required: true },
     date: { type: "string", required: true },
-    description: { type: "string", required: true },
+    summary: { type: "string", required: true },
     url: { type: "string", required: false },
     tags: { type: "json", required: false },
   },

@@ -1,8 +1,52 @@
 ---
-title: 'BioNix'
+title: 'BioNix QC-pipe'
 date: '2022'
-description: 'description'
+summary: 'Integration of a bioinformatics pipeline into Bionix, enhancing reproducibility and ease of use for sequencing data analysis.'
 url: 'https://github.com/victorwkb/BioNix-qc-pipe'
-tags: ['Nix', 'Software Engineering']
+tags: ['Bioinformatics', 'BioNix', 'Nix', 'Software Engineering', 'Functional Programming']
 ---
 
+### About the project
+
+This project aimed to wrap a Snakemake pipeline for generating QC metrics from sequencing data into BioNix. The goal was to leverage BioNix's reproducibility features while incorporating essential bioinformatics tools. The project focused on wrapping tools such as FastQC, FastQ Screen, Qualimap, Samtools stats, and MultiQC, which were not yet available in BioNix's toolset.
+
+</-- Image of BioNix QC-pipe -->
+
+### Introducing BioNix
+
+BioNix is a bioinformatics workflow management system that uses the Nix package manager to create reproducible and scalable workflows. It allows users to define workflows as directed acyclic graphs (DAGs) and execute them in a controlled environment. BioNix provides a high level of reproducibility, as it ensures that the same software versions and dependencies are used across different runs, which can be validated via the output hash in the Nix store.
+
+</-- Image of BioNix Logo -->
+
+### Integrated Bioinformatics Tools 
+
+1. **FastQC**: QC tool for sequencing data.
+
+2. **FastQ-Screen**: Screening tool that aligns reads to a set of sequence databases to determine sequence composition.
+
+3. **Qualimap**: Calculates QC metrics based on alignment data.
+
+4. **Samtools stats**: Generates statistics from alignment files.
+
+5. **MultiQC**: Aggregates results from various bioinformatics analyses into a single report.
+
+6. **BioBloom**: Additional tool wrapped to demonstrate its compatibility to be compiled into MultiQC's report.
+
+
+### Challenges and Solutions
+
+One of the main challenges was to learn Nix as a functional programming language and understand the BioNix architecture. This required reading the Nix manual and studying the existing BioNix workflows to understand how to integrate new tools.
+
+The other challenge was ensuring compatibility between the wrapped tools and BioNix's environment. This required careful configuration and, in some cases, slight modifications to the tools' output formats, by specifying certain flags and arguments in the nix files.
+
+Debugging was also challenging, as the error could be stemmed from the upstream tool rather than steps during integration. For instance, I had to go through the upstream tool's source code to identify the error and create pull requests to fix these issues.
+
+### Impact
+
+This project significantly enhanced the reproducibility and ease of use of the QC pipeline for sequencing data analysis, by simply changing the inputs and stages within the DAG. By integrating these tools into BioNix, we've made it easier for bioinformaticians to create consistent and reproducible workflows. 
+
+As the first intern for this project at Papenfuss Lab, I was able to reduce the steep learning curve for future interns by providing detailed [documentation and guide](https://github.com/victorwkb/BioNix-Doc) with code examples. My work has helped them understand the BioNix's architecture and important bits of Nix to start contributing without going through Nix's thorough manual. At the time of writing, this [repository](https://github.com/WEHI-ResearchComputing/BioNix-GettingStarted/wiki) contains the latest documentation and work contributed by a few cohort of interns.
+
+### Read More
+
+For a detailed technical overview of this project, including code implmentation and configuration details, check out the project [repository](https://github.com/victorwkb/BioNix-qc-pipe).
