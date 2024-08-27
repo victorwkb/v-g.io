@@ -1,8 +1,43 @@
 ---
-title: 'AI Hackathon - Team Olpaca'
+title: 'Wearther: Outfit Recommender'
 date: '2023'
-description: 'description'
+summary: 'An innovative app that combines weather forecasting with personalised outfit recommendations using AI and real-time data.'
 url: 'https://github.com/victorwkb/OLPACA'
-tags: ['Prompt Engineering', 'Python', 'Software Engineering', 'NextJS', 'Airflow']
+tags: ['Python', 'Langchain', 'Next.js', 'Data Science', 'Machine Learning', 'Software Engineering', 'LLM']
 ---
 
+### About the Project
+
+Wearther is an innovative application that demonstrates the power of combining large language models (LLMs), real-time data, and machine learning for generating personalised recommendations. The idea of this project addresses the theme of the AI hackathon, which is to solve a Melbourne problem using LLMs. This app solves an issue that is very relatable especially to our team full of international students who experienced the unpredictable weather in Melbourne upon arrival, where people may feel uncertain when choosing their outfit for the day.
+
+### Key Features
+
+1. **Integration of Multiple APIs**: The app integrates data from Google Maps Platform and WeatherAPI, demonstrating how to work with multiple external data sources.
+
+2. **AI Model Deployment**: The project uses AWS SageMaker for creating the model's endpoint, as it is scalable for deploying machine learning models.
+
+3. **Large Language Models (LLMs)**: The app incorporates Cohere's Command LLM model through AWS Bedrock after comparing the performance with the other models available on the platform at the time.
+
+4. **Real-time Data Processing**: Wearther processes real-time weather data and considers user's daily trip information to generate outfit recommendations.
+
+5. **Personalisation Algorithms**: The app takes into account user-specific data (sex, age, height, weight, exercise frequency) to tailor its recommendations via machine learning models on top of the dynamic weather data.
+
+### Tech Stack
+
+- **Frontend**: Tailwind CSS, Radix UI
+- **Backend**: Next.js
+- **LLM Framework**: Langchain
+- **Model Training**: Jupyter Notebook, Python
+- **Model Deployment**: AWS SageMaker
+
+### Try the App
+
+The [repository](https://github.com/victorwkb/OLPACA) includes clear instructions for setting up the development environment, including cloning the repo, installing dependencies, and configuring the specific API keys. 
+
+```bash showLineNumbers
+git clone https://github.com/victorwkb/OLPACA.git
+cd olpaca_demo
+npm install
+# Set up .env.local with API keys
+npm run dev
+```
