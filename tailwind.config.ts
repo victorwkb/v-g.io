@@ -17,9 +17,9 @@ const config: Config = {
       },
       backgroundColor: {
         primary: "var(--gray-1)",
-        secondary: "var(--gray-4)",
-        secondaryA: "var(--gray-a4)",
+        secondary: "var(--gray-2)",
         tertiary: "var(--gray-3)",
+        contrast: "var(--contrast-color)",
       },
       borderColor: {
         primary: "var(--gray-6)",

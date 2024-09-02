@@ -2,7 +2,7 @@ import { allProjects } from ".contentlayer/generated";
 import Image from "next/image";
 import { notFound } from "next/navigation";
 import Link from "next/link";
-import MdxWrapper from "app/components/MdxWrapper";
+import MdxWrapper from "app/components/mdx/MdxWrapper";
 
 export default function Project({ params }: { params: any }) {
   const proj = allProjects.find((proj) => proj.slug === params.slug);

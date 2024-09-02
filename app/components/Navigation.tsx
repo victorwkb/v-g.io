@@ -79,7 +79,7 @@ export default function Navigation() {
                         className={clsx(
                           "rounded-lg px-4 py-2 text-sm transition-colors hover:text-primary",
                           pathname === navItems.href
-                            ? "bg-secondaryA text-primary"
+                            ? "bg-tertiary text-primary"
                             : "text-secondary",
                         )}
                       >

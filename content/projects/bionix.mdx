@@ -10,9 +10,18 @@ tags: ['Bioinformatics', 'BioNix', 'Nix', 'Software Engineering', 'Functional Pr
 
 This project aimed to wrap a Snakemake pipeline for generating QC metrics from sequencing data into BioNix. The goal was to leverage BioNix's reproducibility features while incorporating essential bioinformatics tools. The project focused on wrapping tools such as FastQC, FastQ Screen, Qualimap, Samtools stats, and MultiQC, which were not yet available in BioNix's toolset.
 
+<Image
+  src="/projects/bionix/bionix-logo.png"
+  alt="BioNix Logo"
+  width={1534}
+  height={400}
+  contained
+  size="lg"
+/>
+
 ### Introducing BioNix
 
-BioNix is a bioinformatics workflow management system that uses the Nix package manager to create reproducible and scalable workflows. It allows users to define workflows as directed acyclic graphs (DAGs) and execute them in a controlled environment. BioNix provides a high level of reproducibility, as it ensures that the same software versions and dependencies are used across different runs, which can be validated via the output hash in the Nix store.
+BioNix is a bioinformatics workflow management system that uses the Nix package manager to create reproducible and scalable workflows. It allows users to define workflows as directed acyclic graphs (DAGs) and execute them in a controlled environment. BioNix provides a high level of reproducibility, as it ensures that the same software versions and dependencies are used across different runs, which can be validated via the output hash in the Nix store. This [page](https://github.com/WEHI-ResearchComputing/BioNix-GettingStarted/wiki/2.-How-BioNix-Works#how-nix-builds) has a high-level explanation of how Nix provides reproducibility.
 
 ### Integrated Bioinformatics Tools 
 
@@ -28,20 +37,29 @@ BioNix is a bioinformatics workflow management system that uses the Nix package 
 
 6. **BioBloom**: Additional tool wrapped to demonstrate its compatibility to be compiled into MultiQC's report.
 
+<Image
+  src="/projects/bionix/qc-pipe.png"
+  alt="QC-Pipe"
+  width={1000}
+  height={500}
+  caption="Original QC Pipeline developed by Papenfuss Lab."
+  contained
+  size="lg"
+/>
 
 ### Challenges and Solutions
 
 One of the main challenges was to learn Nix as a functional programming language and understand the BioNix architecture. This required reading the Nix manual and studying the existing BioNix workflows to understand how to integrate new tools.
 
-The other challenge was ensuring compatibility between the wrapped tools and BioNix's environment. This required careful configuration and, in some cases, slight modifications to the tools' output formats, by specifying certain flags and arguments in the nix files.
+The other challenge was to ensure compatibility between the wrapped tools and BioNix's environment. This required careful configuration and, in some cases, slight modifications to the tools' output formats, by specifying certain flags and arguments in the nix files.
 
-Debugging was also challenging, as the error could be stemmed from the upstream tool rather than steps during integration. For instance, I had to go through the upstream tool's source code to identify the error and create pull requests to fix these issues.
+Debugging was also challenging, as errors could originate from upstream tools. For instance, I had to go through the upstream tool's source code to identify the error and create pull requests to fix the issues.
 
 ### Impact
 
-This project significantly enhanced the reproducibility and ease of use of the QC pipeline for sequencing data analysis, by simply changing the inputs and stages within the DAG. By integrating these tools into BioNix, we've made it easier for bioinformaticians to create consistent and reproducible workflows. 
+This project significantly enhanced the reproducibility and ease of use of the QC pipeline for sequencing data analysis, by simply changing the inputs and modifying the stages within the DAG. By integrating these tools into BioNix, we've made it easier for bioinformaticians to create consistent and reproducible workflows. 
 
-As the first intern for this project at Papenfuss Lab, I was able to reduce the steep learning curve for future interns by providing detailed [documentation and guide](https://github.com/victorwkb/BioNix-Doc) with code examples. My work has helped them understand the BioNix's architecture and important bits of Nix to start contributing without going through Nix's thorough manual. At the time of writing, this [repository](https://github.com/WEHI-ResearchComputing/BioNix-GettingStarted/wiki) contains the latest documentation and work contributed by a few cohort of interns.
+As the first intern for the BioNix project at Papenfuss Lab, I was able to reduce the steep learning curve for future interns by providing detailed [documentation and guide](https://github.com/victorwkb/BioNix-Doc) with code examples. My work has helped them understand the BioNix's architecture and important bits of Nix to start contributing without going through Nix's thorough manual. At the time of writing, this [repository](https://github.com/WEHI-ResearchComputing/BioNix-GettingStarted/wiki) contains the latest documentation and work contributed by a few cohort of interns.
 
 ### Read More
 
