@@ -7,6 +7,8 @@
 @import "@radix-ui/colors/gray-dark.css";
 @import "@radix-ui/colors/gray-dark-alpha.css";
 
+@import "./prism.css";
+
 @layer base {
   :root {
     --bg: var(--gray-1);

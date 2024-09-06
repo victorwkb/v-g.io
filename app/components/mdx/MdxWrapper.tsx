@@ -5,7 +5,7 @@ const components = {
   Image: CustomImage,
 };
 
-export default function MdxWrapper({ code }: {code: string }) {
+export default function MdxWrapper({ code }: { code: string }) {
   const Component = useMDXComponent(code, { components });
 
   return <Component components={components} />;

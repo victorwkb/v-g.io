@@ -44,8 +44,8 @@ const projectComputedFields: ComputedFields = {
   },
 };
 
-export const Project = defineDocumentType(() => ({
-  name: "Project",
+export const Projects = defineDocumentType(() => ({
+  name: "Projects",
   filePathPattern: `projects/**/*.mdx`,
   contentType: "mdx",
   fields: {
@@ -60,7 +60,7 @@ export const Project = defineDocumentType(() => ({
 
 export default makeSource({
   contentDirPath: "content",
-  documentTypes: [Blog, Project],
+  documentTypes: [Blog, Projects],
   mdx: {
     rehypePlugins: [rehypePrism, rehypeSlug],
   },
