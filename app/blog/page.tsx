@@ -1,9 +1,9 @@
 import Image from "next/image";
 import { Metadata } from "next";
-import { allBlogs } from ".contentlayer/generated";
 import Link from "app/components/Link";
 import Halo from "app/components/Halo";
 import clsx from "clsx";
+import { getAllBlogs } from "lib/content";
 
 export const metadata: Metadata = {
   title: "Blog | Victor Goh",
@@ -11,7 +11,7 @@ export const metadata: Metadata = {
 };
 
 export default function Blog() {
-  const blogs = allBlogs;
+  const blogs = getAllBlogs();
 
   return (
     <div className="flex flex-col gap-16">
@@ -29,7 +29,7 @@ export default function Blog() {
         className="animate-in"
         style={{ "--index": 2 } as React.CSSProperties}
       >
-        {blogs.map((blog, i) => (
+        {blogs.map((blog) => (
           <li
             key={blog.slug}
             className={clsx(

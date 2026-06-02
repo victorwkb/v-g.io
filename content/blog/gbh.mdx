@@ -1,8 +1,60 @@
 ---
-title: 'Green Battery Hack'
+title: 'How we clinched 4th place in MLAI Aus Green Battery Hack'
 date: '2024'
-summary: 'summary'
-tags: ['Python', 'Machine Learning', 'Time Series Forecasting']
+summary: 'Utilising machine learning and optimisation strategy to profit from trading energy in the Australian energy spot market with a 13KWh battery.'
+tags: ['Python', 'Machine Learning', 'Time Series Forecasting', 'Darts']
 ---
 
-Coming soon
+### Optimising Battery Operations: Skvalp's Journey to 4th Place in MLAI Aus Green Battery Hack
+
+In an era where clean energy is crucial, effective management of renewable resources can be a game-changer. At the MLAI Green Battery Hack, the mission was clear: develop a strategy to optimize battery operations in an energy market simulation, responding to real-time market data and solar energy inputs. Our team, Skvalp, set out to tackle this challenge, and we’re proud to have ranked 4th among numerous teams from Melbourne and Sydney.
+
+### The Hackathon Challenge
+
+The competition simulated a real-world energy market, with the goal of creating algorithms that manage battery charging and discharging based on price fluctuations and incoming solar power. Teams had to develop and refine strategies that would balance energy storage and consumption, while maximizing profits or minimizing losses based on real-time data. It was a test of technical prowess, forecasting accuracy, and optimization skills.
+
+Early Success and Challenges
+
+Initially, Skvalp’s approach placed us at the top of the provisional leaderboard, making us momentarily the number one team just before the code submission cut-off. Our excitement was palpable as we looked forward to maintaining that spot, but unforeseen technical issues took us by surprise.
+
+A critical function in our code, which we believed was fully supported, was not properly documented for participant use. This oversight forced us to disable it during the final leaderboard simulation, resulting in a score lower than expected. Still, the journey was immensely rewarding, and we take pride in our final standing.
+
+### Methodology
+
+Skvalp’s approach combined robust time series forecasting with optimization algorithms. While some code details are proprietary due to team members’ ongoing startup work, the overall framework and tools we used were instrumental in our success.
+
+## Time Series Forecasting with sktime and Darts
+
+We leveraged sktime and Darts, two powerful Python libraries for time series forecasting. After trial and error, we chose Darts as the main forecasting framework due to its efficiency in handling multi-step predictions and faster processing times—essential in a competition with strict time constraints.
+
+- sktime offered a unified framework for time series tasks, with scikit-learn compatibility and extensive pipeline support.
+- Darts provided flexibility, especially with its handling of past covariates, enabling us to update forecasts without retraining the entire model.
+
+## Price Prediction Models
+
+To predict energy prices, we built an ensemble of machine learning models:
+
+- XGBoost and CatBoost formed the core of our predictive arsenal, trained on historical price, demand, and weather data.
+- Our system dynamically switched between 12-hour and 24-hour forecasting models, adapting to the amount of available historical data.
+
+## Optimizing Battery Strategy
+
+Our optimization strategy was implemented in the SreshtaGyan class. Here’s how it worked:
+
+- Price Forecasting: We used our machine learning models to forecast prices over different time windows.
+- Solar Power Forecasting: External solar energy forecasts were incorporated into our model.
+- Battery Optimization: The find_optimal_discharge function determined the best times to charge or discharge the battery, considering factors like dynamic State of Energy (SOE) limits. This ensured efficient battery management while reacting to fluctuating market prices.
+
+### Lessons Learned
+
+Though we faced unexpected technical challenges, the experience allowed us to refine our knowledge of time series forecasting and optimization algorithms. The setback with the undocumented function was a valuable lesson in ensuring full compatibility and thorough testing under all conditions.
+
+### Conclusion
+
+Competing in the MLAI Green Battery Hack was a rewarding and educational experience. Achieving 4th place is a testament to our team’s collaboration, technical expertise, and problem-solving capabilities. Skvalp is incredibly proud of the work we’ve done, and we’re eager to continue pushing the boundaries of renewable energy management.
+
+We also extend our gratitude to the MLAI Aus team for organizing such a fantastic hackathon and to the sponsors for making it all possible.
+
+**Contributors** : Jithin George, Vishnu Vinayamohanan, Bigi Philip, Eric Kim, Victor Goh
+
+Find us on GitHub: @j-georgeAU, @vihnuav08, @bigiphilip, @EricKim9724, @victorwkb

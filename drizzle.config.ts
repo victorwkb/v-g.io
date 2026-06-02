@@ -1,7 +1,7 @@
 import type { Config } from "drizzle-kit";
 
 export default {
-  driver: "pg",
+  dialect: "postgresql",
   schema: "./db/schema.ts",
   dbCredentials: {
     user: process.env.SUPABASE_USER!,

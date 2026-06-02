@@ -27,40 +27,50 @@ export default function About() {
       </div>
 
       <div
-        className="animate-in columns-2"
+        className="animate-in grid grid-cols-2 gap-3"
         style={{ "--index": 2 } as React.CSSProperties}
       >
-        <div className="w-15 relative mb-4 h-80">
-          <Image
-            alt="Placeholder"
-            src="/gallery/ngs.jpg"
-            className="rounded-lg object-cover"
-            fill
-          />
+        {/* Left column: tall then short */}
+        <div className="flex flex-col gap-3">
+          <div className="relative h-64 overflow-hidden rounded-lg">
+            <Image
+              alt="NGS"
+              src="/gallery/ngs.jpg"
+              className="object-cover"
+              fill
+              sizes="(max-width: 768px) 50vw, 340px"
+            />
+          </div>
+          <div className="relative h-40 overflow-hidden rounded-lg">
+            <Image
+              alt="Graduation"
+              src="/gallery/grad.jpg"
+              className="object-cover"
+              fill
+              sizes="(max-width: 768px) 50vw, 340px"
+            />
+          </div>
         </div>
-        <div className="w-15 relative h-40">
-          <Image
-            alt="Placeholder"
-            src="/gallery/golf.jpg"
-            className="rounded-lg object-cover"
-            fill
-          />
-        </div>
-        <div className="w-15 relative mb-4 h-40">
-          <Image
-            alt="Placeholder"
-            src="/gallery/grad.jpg"
-            className="rounded-lg object-cover"
-            fill
-          />
-        </div>
-        <div className="w-15 relative h-80">
-          <Image
-            alt="Placeholder"
-            src="/gallery/dome.jpg"
-            className="rounded-lg object-cover"
-            fill
-          />
+        {/* Right column: short then tall */}
+        <div className="flex flex-col gap-3">
+          <div className="relative h-40 overflow-hidden rounded-lg">
+            <Image
+              alt="Golf"
+              src="/gallery/golf.jpg"
+              className="object-cover"
+              fill
+              sizes="(max-width: 768px) 50vw, 340px"
+            />
+          </div>
+          <div className="relative h-64 overflow-hidden rounded-lg">
+            <Image
+              alt="Dome"
+              src="/gallery/dome.jpg"
+              className="object-cover"
+              fill
+              sizes="(max-width: 768px) 50vw, 340px"
+            />
+          </div>
         </div>
       </div>
 

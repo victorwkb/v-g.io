@@ -2,16 +2,17 @@ import { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 import clsx from "clsx";
-import { allProjects } from ".contentlayer/generated";
 import Halo from "app/components/Halo";
+import { getAllProjects } from "lib/content";
 
 export const metadata: Metadata = {
   title: "Projects | Victor Goh",
-  description: "This is the collection of projects I've worked on during my free time.",
+  description:
+    "This is the collection of projects I've worked on during my free time.",
 };
 
-export default function Blog() {
-  const projects = allProjects;
+export default function Projects() {
+  const projects = getAllProjects();
 
   return (
     <div className="flex flex-col gap-16">
@@ -28,43 +29,41 @@ export default function Blog() {
       </div>
 
       <ul
-        className="animate-in flex flex-col animated-list"
-        style={{ "--index": 2 } as React.CSSProperties }
+        className="animated-list animate-in flex flex-col"
+        style={{ "--index": 2 } as React.CSSProperties}
       >
-        {projects.map((project, i) => (
+        {projects.map((project) => (
           <li
             key={project.slug}
             className={clsx(
-              "py-6 flex flex-col md:flex-row gap-4 md:gap-6 transition-opacity first:pt-0 last:pb-0"
+              "flex flex-col gap-4 py-6 transition-opacity first:pt-0 last:pb-0 md:flex-row md:gap-6",
             )}
           >
             <Link
               href={`/projects/${project.slug}`}
-              className="w-full md:w-2/5 aspect-video bg-tertiary rounded-lg border border-secondary overflow-clip select-none"
+              className="aspect-video w-full select-none overflow-clip rounded-lg border border-secondary bg-tertiary md:w-2/5"
             >
               <Halo>
                 <Image
                   src={project.image}
                   alt={project.title}
                   fill
-                  className="w-full h-full object-cover"
+                  className="h-full w-full object-cover"
                 />
               </Halo>
             </Link>
-            <div className="w-full md:w-3/5 space-y-2">
+            <div className="w-full space-y-2 md:w-3/5">
               <div>
                 <Link
                   href={`/projects/${project.slug}`}
-                  className="text-primary font-medium hover:underline"
+                  className="font-medium text-primary hover:underline"
                 >
                   {project.title}
                 </Link>
                 <time className="text-secondary"> {project.date} </time>
               </div>
 
-              <p className="line-clamp-3 text-tertiary">
-                {project.summary}
-              </p>
+              <p className="line-clamp-3 text-tertiary">{project.summary}</p>
             </div>
           </li>
         ))}
