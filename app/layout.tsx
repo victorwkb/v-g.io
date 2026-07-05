@@ -35,6 +35,7 @@ export default function RootLayout({
           inter.className,
           "width-full bg-primary text-primary antialiased",
         )}
+        suppressHydrationWarning
       >
         <main>
           <Providers attribute="class" defaultTheme="system" enableSystem>

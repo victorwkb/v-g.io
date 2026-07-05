@@ -1,0 +1,60 @@
+---
+title: 'Auslan Recognition Web App'
+date: '2024'
+summary: 'A web app for learning Australian Sign Language, combining in-browser computer vision for real-time fingerspelling recognition with a vector-powered Auslan dictionary — all on a near-zero-cost serverless stack.'
+url: 'https://github.com/victorwkb/auslan'
+tags: ['Python', 'Computer Vision', 'LLM', 'LanceDB', 'AWS Lambda', 'TensorFlow.js', 'Next.js', 'Terraform']
+---
+
+### About the Project
+
+Auslan is a web app that makes Australian Sign Language more accessible — particularly for hearing-impaired children learning to fingerspell. It has two distinct parts built on entirely different paradigms: traditional computer vision running directly in the browser for real-time sign recognition, and a serverless LLM-powered vector search backend for the Auslan dictionary. Both parts were deliberately designed to cost as close to nothing as possible to run.
+
+<Image
+  src="/projects/auslan/image.png"
+  alt="Auslan app landing page"
+  width={1200}
+  height={900}
+  contained
+  size="lg"
+/>
+
+### In-Browser Fingerspelling Recognition
+
+The real-time recognition side avoids servers entirely. Google's MediaPipe runs in-browser to extract hand landmarks — 21 keypoints per hand — from the webcam feed. A custom TensorFlow.js model trained on those landmarks classifies each frame into the corresponding Auslan letter.
+
+Running the model client-side isn't just a cost optimisation. It means no video data leaves the user's machine, which matters for an app aimed at children. The model is lightweight enough that classification runs in real-time on a standard laptop without any GPU.
+
+<Image
+  src="/projects/auslan/fingerspelling.png"
+  alt="Auslan fingerspelling recognition"
+  width={1200}
+  height={900}
+  contained
+  size="lg"
+/>
+
+### Vector Dictionary on Blob Storage
+
+The Auslan dictionary takes a different path. Signs are described as text, vectorised using Amazon Bedrock's Titan Embed Text v2 model, and indexed with LanceDB — a vector database that stores its data directly on S3 rather than running as a separate managed service. There is no database server. LanceDB reads and writes Lance format files straight to the bucket.
+
+The query pipeline uses hybrid search: IVF_HNSW_PQ vector indexing for semantic similarity, plus a full-text search index built with Tantivy for exact keyword matching. This was my first time working with LanceDB when it was still quite new, and reaching for blob-native storage as the persistence layer rather than spinning up a database server was a deliberate call that kept costs at essentially zero outside of inference.
+
+### Serverless Inference via Docker Images
+
+The backend ETL and query functions run as AWS Lambda functions packaged as Docker images deployed through ECR. Terraform provisions the entire stack — ECR repo, Lambda functions, S3 buckets, IAM roles, and KMS key encryption for environment variables.
+
+Four Lambda functions cover the pipeline stages: `transform`, `vectorize`, `indexing`, and `query`. The trade-off is cold starts — for a side project with infrequent traffic, a few seconds of latency on the first query is a fair price for paying nothing when it sits idle.
+
+### Infrastructure at a Glance
+
+- **ETL pipeline**: S3 (bronze → silver → gold), Lambda (Docker image, arm64), Terraform
+- **Embeddings**: AWS Bedrock Titan Embed Text v2
+- **Vector store**: LanceDB on S3 (IVF\_HNSW\_PQ + FTS index)
+- **Query function**: Lambda, 2048 MB, 60s timeout
+- **Frontend**: Next.js, Tailwind CSS
+- **CV model**: MediaPipe hand landmarks + TensorFlow.js classifier (fully in-browser)
+
+### Read More
+
+Full source, Terraform config, and setup instructions in the [repository](https://github.com/victorwkb/auslan).

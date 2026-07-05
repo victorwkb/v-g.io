@@ -48,6 +48,7 @@ export default function Projects() {
                   src={project.image}
                   alt={project.title}
                   fill
+                  sizes="(max-width: 768px) 100vw, 40vw"
                   className="h-full w-full object-cover"
                 />
               </Halo>

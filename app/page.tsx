@@ -25,7 +25,7 @@ export default async function Home() {
           />
           <div>
             <h1 className="text-3xl font-bold text-primary">Victor Goh</h1>
-            <p className="text-secondary">Data Scientist &amp; Engineer</p>
+            <p className="text-secondary">Data Engineer</p>
           </div>
         </div>
 
@@ -33,9 +33,9 @@ export default async function Home() {
           className="animate-in max-w-lg text-primary"
           style={{ "--index": 2 } as React.CSSProperties}
         >
-          Hi there, I&apos;m Victor. I build data-driven solutions and work across
-          the full ML stack — from experimentation and modelling to deployment.
-          I&apos;m also writing about my journey in data science.
+          Hi, I&apos;m Victor — a data engineer working in the Australian energy
+          sector. I build data platforms, write about tooling, and share what
+          I learn along the way.
         </p>
 
         <ul

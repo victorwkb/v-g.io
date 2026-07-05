@@ -1,0 +1,87 @@
+---
+title: 'Managing My Dev Environment as Code with Nix'
+date: '2026'
+summary: 'One repository, two machines, one command to apply everything. How I use Nix to manage my entire development environment declaratively across a personal Mac and a work Linux machine.'
+tags: ['Nix', 'Dotfiles', 'Home Manager', 'DevEx']
+---
+
+### The Problem
+
+I work across two machines — a personal MacBook and a work Linux environment running on WSL. Keeping them consistent was a constant pain. I'd install something on one machine, forget about it on the other, and slowly they'd drift apart. Setup scripts helped, but they were always slightly wrong by the time I actually needed them.
+
+The real issue is that traditional dotfiles only give you config files. You still have to install the right packages, at the right versions, and hope the script still works months later.
+
+Nix solves this by treating your environment as a declaration. You describe what you want, it builds exactly that.
+
+### Structure
+
+The whole thing lives in one repo — [github.com/victorwkb/dotfiles](https://github.com/victorwkb/dotfiles).
+
+```
+dotfiles/
+├── flake.nix          ← entry point, defines both machines
+├── flake.lock         ← every dependency pinned to an exact commit
+├── hosts/
+│   ├── darwin/        ← personal MacBook config
+│   └── nixos-wsl/     ← work machine config
+├── modules/
+│   ├── system/        ← shared system packages
+│   └── home/          ← shared user config (shell, editor, tools)
+├── scripts/           ← bootstrap for fresh installs
+└── nvim/              ← neovim config (git submodule)
+```
+
+Both machines share the same modules for shell, terminal, editor, and common tools. Each host file then adds only what's specific to that machine — things like git identity and cloud tooling. Everything else is identical.
+
+### Applying Changes
+
+On macOS it's straightforward:
+
+```sh
+sudo darwin-rebuild switch --flake ~/dotfiles#macos
+```
+
+One command applies everything atomically — packages, config files, system defaults. If something breaks you roll back with one command. You can also apply directly from GitHub without cloning:
+
+```sh
+sudo darwin-rebuild switch --flake 'github:victorwkb/dotfiles/main#macos'
+```
+
+### WSL Takes a Few More Steps
+
+Getting NixOS-WSL set up from scratch is a bit more involved, but you only do it once. The README covers it fully — the short version:
+
+1. Download the NixOS-WSL installer and import it via PowerShell
+2. Run the bootstrap script, which is self-guiding and handles the multi-stage setup
+3. Verify everything landed correctly with a quick sanity check
+
+```sh
+# Step 2 — run from inside the fresh WSL instance
+curl -fsSL https://raw.githubusercontent.com/victorwkb/dotfiles/main/scripts/bootstrap-wsl.sh | bash
+```
+
+The script is designed to re-run — it tells you what to do after each stage. Expect it to take a few minutes on first run since it's pulling everything from scratch.
+
+After that, rebuilds are just an alias:
+
+```sh
+nrs   # sudo nixos-rebuild switch --flake ~/dotfiles#nixos
+```
+
+### Everything is Pinned
+
+`flake.lock` pins every dependency to an exact commit. The environment I have today is reproducible in a year. Upgrading is explicit — run `nix flake update`, see exactly what changed, test it, commit. No surprises.
+
+### Neovim as a Submodule
+
+Neovim lives in its own repo as a git submodule, symlinked into place. Edits take effect immediately without a rebuild, which matters when you're actively tuning it. It keeps the neovim config independently versioned while still being part of the dotfiles repo.
+
+### CI Validates Both Hosts
+
+A GitHub Actions workflow runs `nix flake check` on both `macos-latest` and `ubuntu-latest` on every push. If a change breaks either host config, CI catches it before it touches a real machine.
+
+### What This Actually Means
+
+The practical upshot: setting up a new machine is a bootstrap script and one command. There's no manual step I might forget, no package I need to remember to install, no config file I need to track down. The repository is the machine.
+
+Treating infrastructure as code is a standard practice in data engineering. Applying that same discipline to a personal development environment is, to me, just consistency.
