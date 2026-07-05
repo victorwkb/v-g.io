@@ -10,9 +10,10 @@ type Workplace = {
   imageSrc: string | StaticImageData;
   time?: string;
   link?: string;
+  darkBg?: boolean;
 };
 
-function Workplace({ title, company, imageSrc, time, link }: Workplace) {
+function Workplace({ title, company, imageSrc, time, link, darkBg }: Workplace) {
   const content = (
     <>
       <div className="flex items-center gap-4">
@@ -21,7 +22,7 @@ function Workplace({ title, company, imageSrc, time, link }: Workplace) {
           alt={company}
           width={48}
           height={48}
-          className={"bg-neutral-50"}
+          className={clsx("bg-neutral-50", darkBg && "dark:bg-neutral-900")}
         />
         <div className="flex flex-col gap-px">
           <p className={link ? "external-arrow" : ""}>{title}</p>
@@ -32,7 +33,7 @@ function Workplace({ title, company, imageSrc, time, link }: Workplace) {
     </>
   );
   return (
-    <li className="transition-opacity" key={company}>
+    <li className="transition-opacity" key={`${company}-${title}`}>
       {link ? (
         <Link
           href={link}

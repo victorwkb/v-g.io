@@ -5,10 +5,11 @@ import Link from "app/components/Link";
 import Section from "app/components/Section";
 import Workplaces from "app/about/components/Workplaces";
 import wehi from "public/gallery/wehi.jpg";
+import zen from "public/gallery/zen.webp";
 
 export const metadata: Metadata = {
   title: "About | Victor Goh",
-  description: "I am a data scientist and engineer who loves to build data-driven solutions.",
+  description: "I am a data engineer who loves to build data-driven solutions.",
 };
 
 export default function About() {
@@ -81,11 +82,12 @@ export default function About() {
         <Section heading="About" headingAlignment="left">
           <div className="flex flex-col gap-6">
             <p>
-              Hello! I am Victor Goh and I&apos;m a data scientist and engineer.
+              Hello! I am Victor Goh and I&apos;m a data engineer/scientist.
             </p>
             <p>
-              I previously studied at the University of Melbourne and currently
-              completing my Master&apos;s of Data Science at Monash University.
+              I studied at the University of Melbourne and completed my Master&apos;s
+              of Data Science at Monash University. I now work in the energy sector,
+              building data pipelines and infrastructure.
             </p>
             <p>
               When I&apos;m away from my desk, I&apos;m probably hitting the gym,
@@ -97,8 +99,8 @@ export default function About() {
         <Section heading="Work" headingAlignment="left">
           <div className="flex flex-col gap-6">
             <p>
-              Earlier in my career, I completed an internship and I&apos;m
-              currently actively pursuing a full-time role in data analytics.
+              I&apos;ve worked across research and the energy industry, building
+              data solutions from analytics to engineering.
             </p>
             <Workplaces items={workplaces} />
           </div>
@@ -144,6 +146,22 @@ export default function About() {
 }
 
 const workplaces = [
+  {
+    title: "Data Engineer",
+    company: "Zen Energy",
+    time: "2026",
+    imageSrc: zen,
+    link: "https://www.zenenergy.com.au/",
+    darkBg: true,
+  },
+  {
+    title: "Graduate Data Analyst",
+    company: "Zen Energy",
+    time: "2025",
+    imageSrc: zen,
+    link: "https://www.zenenergy.com.au/",
+    darkBg: true,
+  },
   {
     title: "Research Software Engineer",
     company: "Walter and Eliza Hall Institute of Medical Research",

@@ -3,8 +3,8 @@ import clsx from "clsx";
 
 type CustomImageProps = {
   src: string;
-  width: number;
-  height: number;
+  width?: number | string;
+  height?: number | string;
   alt: string;
   caption?: string;
   priority?: boolean;
@@ -24,20 +24,27 @@ export default function CustomImage({
   contained,
   size = "base",
 }: CustomImageProps) {
+  const w = Number(width) || 1200;
+  const h = Number(height) || 630;
+
   return (
-    <div className={clsx(reset ? "" : "not-prose my-8 w-full")}>
+    <div
+      className={clsx(
+        reset ? "" : "not-prose my-8 w-full",
+        size === "lg" && "md:-ml-20 md:w-[calc(100%+160px)]",
+      )}
+    >
       <figure className={clsx("m-0 flex flex-col gap-2")}>
         <Image
           src={src}
-          width={width}
-          height={height}
+          width={w}
+          height={h}
           alt={alt}
           priority={priority}
           className={clsx(
             "h-auto w-full",
             contained &&
               "overflow-hidden rounded-md border border-secondary bg-secondary md:rounded-lg",
-            size === "lg" && "max-w-none md:-ml-20 md:w-[calc(100%+160px)]",
           )}
         />
         {caption && <figcaption>{caption}</figcaption>}

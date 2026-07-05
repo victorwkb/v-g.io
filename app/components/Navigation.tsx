@@ -5,10 +5,29 @@ import Image from "next/image";
 import Link from "next/link";
 import ThemeSwitcher from "./ThemeSwitcher";
 import { usePathname } from "next/navigation";
-import { useTheme } from "next-themes";
 import NavLink from "./NavLink";
 import { Popover, PopoverButton, PopoverPanel } from "@headlessui/react";
 import { ChevronDownIcon } from "@heroicons/react/20/solid";
+import { useTheme } from "next-themes";
+import { useEffect, useState } from "react";
+
+function Logo() {
+  const [mounted, setMounted] = useState(false);
+  const { resolvedTheme } = useTheme();
+
+  useEffect(() => setMounted(true), []);
+
+  if (!mounted) return <div style={{ width: 36, height: 36 }} />;
+
+  return (
+    <Image
+      alt="favicon"
+      src={resolvedTheme === "dark" ? "/gallery/favicon.png" : "/gallery/favicon-inversed.png"}
+      height={36}
+      width={36}
+    />
+  );
+}
 
 const navItems = [
   { label: "About", href: "/about" },
@@ -18,27 +37,12 @@ const navItems = [
 
 export default function Navigation() {
   const pathname = `/${usePathname().split("/")[1]}`;
-  const { resolvedTheme } = useTheme();
 
   return (
     <header className={clsx("relative top-0 z-20 bg-primary md:sticky")}>
       <nav className="lg mx-auto flex max-w-[700px] items-center justify-between gap-3 px-4 py-3 md:px-6">
         <Link href="/" className="shrink-0 text-primary">
-          {resolvedTheme === "dark" ? (
-            <Image
-              alt="favicon"
-              src="/gallery/favicon-inversed.png"
-              height={36}
-              width={36}
-            />
-          ) : (
-            <Image
-              alt="favicon"
-              src="/gallery/favicon.png"
-              height={36}
-              width={36}
-            />
-          )}
+          <Logo />
         </Link>
 
         <ul className="hidden items-center gap-1 md:flex">

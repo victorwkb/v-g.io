@@ -7,7 +7,7 @@ import { getAllBlogs } from "lib/content";
 
 export const metadata: Metadata = {
   title: "Blog | Victor Goh",
-  description: "I write about coding, hackathons and more ...",
+  description: "Writing about data engineering, developer tooling, and things I've learnt along the way.",
 };
 
 export default function Blog() {
@@ -21,7 +21,7 @@ export default function Blog() {
           className="animate-in text-secondary"
           style={{ "--index": 1 } as React.CSSProperties}
         >
-          Posts about coding, hackathons and more ...
+          Writing about data engineering, developer tooling, and experiences I&apos;ve gained.
         </p>
       </div>
 
@@ -45,6 +45,7 @@ export default function Blog() {
                   src={blog.image}
                   alt={blog.title}
                   fill
+                  sizes="(max-width: 768px) 100vw, 40vw"
                   className="h-full w-full object-cover"
                 />
               </Halo>
